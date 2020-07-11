@@ -15,14 +15,17 @@
     let outgoingMessage = this.message.value;
 
     socket.send(outgoingMessage);
+    printMessage(outgoingMessage);
     // Disable html form action. Use js to handle submit event.
     return false;
   };
 
   // message received - show the message in div#messages
   socket.onmessage = function(event) {
-    let message = event.data;
+    printMessage(event.data);
+  }
 
+  function printMessage(message) {
     let messageElem = document.createElement('div');
     messageElem.textContent = message;
     document.getElementById('messages').append(messageElem);
